@@ -1,0 +1,31 @@
+{
+    "name":"christianbarkowsky/contao-protectedselect",
+    "description":"Adds a new formula select widget which hides the internal field values in the frontend",
+    "keywords":["contao", "form", "field", "protect"],
+    "type":"contao-module",
+    "license":"LGPL-3.0+",
+    "authors":[
+        {
+            "name":"Christoph Barkowsky",
+            "email":"hallo@christianbarkowsky.de",
+            "homepage":"http://christianbarkowsky.de",
+            "role":"Developer"
+        }
+    ],
+    "support":{
+            "email":"hallo@christianbarkowsky.de",
+            "issues":"https://github.com/christianbarkowsky/contao-protectedselect/issues",
+            "source":"https://github.com/christianbarkowsky/contao-protectedselect"
+    },
+    "require":{
+            "php":">=5.3",
+            "contao/core": ">=3.0,<4",
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "": "system/modules/protectedselect"
+            }
+        }
+    }
+}

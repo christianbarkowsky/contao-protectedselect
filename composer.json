@@ -19,7 +19,7 @@
     },
     "require":{
             "php":">=5.3",
-            "contao/core": ">=3.0,<4",
+            "contao/core": ">=3.0,<4"
     },
     "extra": {
         "contao": {

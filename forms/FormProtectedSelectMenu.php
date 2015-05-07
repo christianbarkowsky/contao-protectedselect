@@ -106,6 +106,9 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	/**/
 	
 	
+	/**
+	 * Generate the widget and return it as string
+	 */
 	public function generate()
 	{		
 		$this->arrOptions = deserialize($this->protectedOptions, true);
@@ -130,6 +133,9 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	}
 	
 	
+	/**
+	 * Parse the template file and return it as string
+	 */
 	public function parse($arrAttributes=null)
 	{
 		dump(deserialize($this->protectedOptions, true));

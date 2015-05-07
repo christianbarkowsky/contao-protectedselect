@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /*
  * Contact maintainer Jan Theofel: jan@theofel.de
@@ -19,5 +19,4 @@ $GLOBALS['TL_FFL']['protectedselect'] = 'FormProtectedSelectMenu';
 /**
  * Backend form fields
  */
-$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';
-
+//$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';

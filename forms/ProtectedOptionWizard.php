@@ -26,7 +26,7 @@ class ProtectedOptionWizard extends \OptionWizard
 	{
 		$arrReferences = array();
 		$mandatory = $this->mandatory;
-		$options = deserialize($this->getPost($this->strName));
+		$options = deserialize(\Input::post($this->strName)); // $this->getPost
 
 		// Check labels only (values can be empty)
 		if (is_array($options))

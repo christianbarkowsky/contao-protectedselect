@@ -1,13 +1,13 @@
 <?php
 
 /*
- * Contact maintainer Jan Theofel: jan@theofel.de
+ * Contact maintainer Christian Barkowsky hallo@christianbarkowsky.de
  *
  * PHP version 5
+ * @copyright  Christian Barkowsky 2014-2015
  * @copyright  Jan Theofel 2011-2013, ETES GmbH 2010
- * @author     Jan Theofel <jan@theofel.de>, Christian Barkowsky <mail@christianbarkowsky.de>, Andreas Schempp <andreas@schempp.ch>
+ * @author     Jan Theofel <jan@theofel.de>, Christian Barkowsky <hallo@christianbarkowsky.de>, Andreas Schempp <andreas@schempp.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
- * @version    $Id: $
  */
  
 /**
@@ -34,9 +34,10 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	public function __get($strKey)
 	{
 		switch( $strKey )
-		{
+		{				
 			case 'value':
 				$this->arrOptions = deserialize($this->protectedOptions, true);
+				
 				if (is_array($this->varValue))
 				{
 					$arrValues = array();
@@ -72,6 +73,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	/**
 	 * Check for a valid option
 	 */
+	/*
 	public function validate()
 	{	
 		$varValue = deserialize($this->getPost($this->strName));
@@ -99,10 +101,11 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		
 		return false;
 	}
+	*/
 	
 	
 	public function generate()
-	{	
+	{		
 		$this->arrOptions = deserialize($this->protectedOptions, true);
 		
 		if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName]))
@@ -122,5 +125,15 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		$this->arrOptions = $arrOptions;
 		
 		return $strBuffer;
+	}
+	
+	
+	public function parse($arrAttributes=null)
+	{
+		dump(deserialize($this->protectedOptions, true));
+		
+		$this->arrOptions = deserialize($this->protectedOptions, true);
+		
+		return parent::parse($arrAttributes);
 	}
 }

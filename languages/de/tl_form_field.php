@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /*
  * Contact maintainer Jan Theofel: jan@theofel.de
@@ -23,4 +23,3 @@ $GLOBALS['TL_LANG']['tl_form_field']['opValueProtected']	= 'Wert (geschützt)';
 $GLOBALS['TL_LANG']['tl_form_field']['opLabel']			= 'Bezeichnung';
 $GLOBALS['TL_LANG']['tl_form_field']['opDefault']		= 'Standard';
 $GLOBALS['TL_LANG']['tl_form_field']['opGroup']			= 'Gruppe';  
-

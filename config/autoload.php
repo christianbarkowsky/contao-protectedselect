@@ -17,5 +17,5 @@
 ClassLoader::addClasses(array
 (
 	'Contao\FormProtectedSelectMenu' => 'system/modules/protectedselect/forms/FormProtectedSelectMenu.php',
-	'Contao\ProtectedOptionWizard'   => 'system/modules/protectedselect/forms/ProtectedOptionWizard.php',
+	//'Contao\ProtectedOptionWizard'   => 'system/modules/protectedselect/forms/ProtectedOptionWizard.php',
 ));

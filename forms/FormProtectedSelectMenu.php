@@ -1,13 +1,15 @@
 <?php
 
 /*
- * Contact maintainer Christian Barkowsky hallo@christianbarkowsky.de
+ * FormProtectedSelectMenu
  *
  * PHP version 5
  * @copyright  Christian Barkowsky 2014-2015
  * @copyright  Jan Theofel 2011-2013, ETES GmbH 2010
- * @author     Jan Theofel <jan@theofel.de>, Christian Barkowsky <hallo@christianbarkowsky.de>, Andreas Schempp <andreas@schempp.ch>
- * @license    http://opensource.org/licenses/lgpl-3.0.html
+ * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
+ * @author     Jan Theofel <jan@theofel.de>
+ * @author     Andreas Schempp <andreas@schempp.ch>
+ * @license    LGPL-3.0+
  */
  
 /**
@@ -73,7 +75,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	/**
 	 * Check for a valid option
 	 */
-	/*
+	/**/
 	public function validate()
 	{	
 		$varValue = deserialize($this->getPost($this->strName));
@@ -101,9 +103,12 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		
 		return false;
 	}
-	*/
+	/**/
 	
 	
+	/**
+	 * Generate the widget and return it as string
+	 */
 	public function generate()
 	{		
 		$this->arrOptions = deserialize($this->protectedOptions, true);
@@ -128,6 +133,9 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	}
 	
 	
+	/**
+	 * Parse the template file and return it as string
+	 */
 	public function parse($arrAttributes=null)
 	{
 		dump(deserialize($this->protectedOptions, true));

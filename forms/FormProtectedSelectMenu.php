@@ -78,6 +78,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	/**/
 	public function validate()
 	{	
+		/*
 		$varValue = deserialize($this->getPost($this->strName));
 		
 		if ($varValue != '' && !$this->isValidOption($varValue))
@@ -86,9 +87,50 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		}
 		
 		$this->varValue = $varValue;
+		*/
+		
+		$mandatory = $this->mandatory;
+		$options = $this->getPost($this->strName);
+
+		// Check if there is at least one value
+		if ($mandatory && is_array($options))
+		{
+			foreach ($options as $option)
+			{
+				if (strlen($option))
+				{
+					$this->mandatory = false;
+					break;
+				}
+			}
+		}
+
+		$varInput = $this->validator($options);
+
+		// Check for a valid option (see #4383)
+		if (!empty($varInput) && !$this->isValidOption($varInput))
+		{
+			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['invalid'], (is_array($varInput) ? implode(', ', $varInput) : $varInput)));
+		}
+
+		// Add class "error"
+		if ($this->hasErrors())
+		{
+			$this->class = 'error';
+		}
+		else
+		{
+			$this->varValue = $varInput;
+		}
+
+		// Reset the property
+		if ($mandatory)
+		{
+			$this->mandatory = true;
+		}
 	}
 	
-	
+	/*
 	protected function isValidOption($varInput)
 	{
 		$protectedOptions = deserialize($this->protectedOptions, true);
@@ -103,7 +145,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		
 		return false;
 	}
-	/**/
+	*/
 	
 	
 	/**
@@ -113,15 +155,13 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	{		
 		$this->arrOptions = deserialize($this->protectedOptions, true);
 		
-		if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName]))
-		{
+		if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName])) {
 			$this->varValue = \Input::get($this->strName);
 		}
 		
 		$arrOptions = $this->arrOptions;
 		
-		foreach( $this->arrOptions as $k => $option )
-		{
+		foreach( $this->arrOptions as $k => $option ) {
 			$this->arrOptions[$k]['value'] = $option['reference'];
 		}
 		
@@ -136,12 +176,12 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	/**
 	 * Parse the template file and return it as string
 	 */
+	/*
 	public function parse($arrAttributes=null)
-	{
-		dump(deserialize($this->protectedOptions, true));
-		
+	{		
 		$this->arrOptions = deserialize($this->protectedOptions, true);
 		
 		return parent::parse($arrAttributes);
 	}
+	*/
 }

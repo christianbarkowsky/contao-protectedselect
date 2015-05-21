@@ -1,16 +1,16 @@
 <?php
 
 /*
- * FormProtectedSelectMenu
+ * protected select
+ * Adds a new formula select widget which hides the internal field values in the frontend
  *
- * PHP version 5
- * @copyright  Christian Barkowsky 2014-2015
- * @copyright  Jan Theofel 2011-2013, ETES GmbH 2010
+ * @copyright  Christian Barkowsky 2015, Jan Theofel 2011-2014, ETES GmbH 2010
  * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
  * @author     Jan Theofel <jan@theofel.de>
  * @author     Andreas Schempp <andreas@schempp.ch>
- * @license    LGPL-3.0+
+ * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
+
  
 /**
  * Run in a custom namespace, so the class can be replaced

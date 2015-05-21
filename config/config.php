@@ -1,14 +1,16 @@
 <?php
 
 /*
- * Contact maintainer Jan Theofel: jan@theofel.de
+ * protected select
+ * Adds a new formula select widget which hides the internal field values in the frontend
  *
- * PHP version 5
- * @copyright  Jan Theofel 2011-2013, ETES GmbH 2010
- * @author     Jan Theofel <jan@theofel.de>, Andreas Schempp <andreas@schempp.ch>
+ * @copyright  Christian Barkowsky 2015, Jan Theofel 2011-2014, ETES GmbH 2010
+ * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
+ * @author     Jan Theofel <jan@theofel.de>
+ * @author     Andreas Schempp <andreas@schempp.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
- * @version    $Id: $
  */
+
 
 /**
  * Form fields
@@ -19,4 +21,4 @@ $GLOBALS['TL_FFL']['protectedselect'] = 'FormProtectedSelectMenu';
 /**
  * Backend form fields
  */
-//$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';
+$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';

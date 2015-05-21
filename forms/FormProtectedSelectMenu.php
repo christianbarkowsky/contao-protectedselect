@@ -130,7 +130,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		}
 	}
 	
-	/*
+	
 	protected function isValidOption($varInput)
 	{
 		$protectedOptions = deserialize($this->protectedOptions, true);
@@ -145,7 +145,6 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		
 		return false;
 	}
-	*/
 	
 	
 	/**

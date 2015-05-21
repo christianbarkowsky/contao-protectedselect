@@ -21,7 +21,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['palettes']['protectedselect'] = '{type_lege
 /**
  * Fields
  */
-/**/
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['protectedOptions'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_form_field']['protectedOptions'],
@@ -30,44 +29,3 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['protectedOptions'] = array
 	'eval'                    => array('mandatory'=>true),
 	'sql'                     => "blob NULL",
 );
-/**/
-
-/*
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['protectedOptions'] = array
-(
-	'label'			=> &$GLOBALS['TL_LANG']['tl_form_field']['protectedOptions'],
-	'exclude' 		=> true,
-	'inputType' 	=> 'multiColumnWizard',
-	'eval' 			=> array
-	(
-		'columnFields' => array
-		(
-
-			'label' => array
-			(
-				'label'                 => &$GLOBALS['TL_LANG']['tl_form_field']['opReference'],
-				'exclude'               => true,
-				'inputType'             => 'text',
-				'eval' 					=> array('style'=>'width:180px')
-			),
-			'value' => array
-			(
-				'label'                 => &$GLOBALS['TL_LANG']['tl_form_field']['opValueProtected'],
-				'exclude'               => true,
-				'inputType'             => 'text',
-				'eval' 					=> array('style'=>'width:180px')
-			),
-			'reference' => array
-			(
-				'label'                 => &$GLOBALS['TL_LANG']['tl_form_field']['opLabel'],
-				'exclude'               => true,
-				'inputType'             => 'text',
-				'eval' 					=> array('style'=>'width:180px'),
-				'mandatory'				=> true
-			),
-		),
-		'mandatory'=>true
-	),
-	'sql'                     => "blob NULL",
-);
-*/

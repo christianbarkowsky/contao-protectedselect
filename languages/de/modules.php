@@ -16,4 +16,3 @@
  * Extension folder
  */
 $GLOBALS['TL_LANG']['MOD']['protectedselect'] = array('Geschütztes Select-Menü');
-

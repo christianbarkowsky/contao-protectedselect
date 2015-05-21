@@ -22,4 +22,3 @@ $GLOBALS['TL_LANG']['FFL']['protectedselect'] = array('Geschütztes Select-Menü
  * Errors
  */
 $GLOBALS['TL_LANG']['ERR']['uniqueReference']	= 'Die Referenz-Werte müssen eindeutig sein.';
-

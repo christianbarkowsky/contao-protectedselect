@@ -22,4 +22,3 @@ $GLOBALS['TL_LANG']['FFL']['protectedselect'] = array('Protected Select Menu', '
  * Errors
  */
 $GLOBALS['TL_LANG']['ERR']['uniqueReference']	= 'Reference values must be unique!';
-

@@ -156,4 +156,3 @@ class ProtectedOptionWizard extends \OptionWizard
   </table>';
 	}
 }
-

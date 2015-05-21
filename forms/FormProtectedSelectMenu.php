@@ -12,9 +12,6 @@
  */
 
  
-/**
- * Run in a custom namespace, so the class can be replaced
- */
 namespace Contao;
 
 
@@ -77,18 +74,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 	 */
 	/**/
 	public function validate()
-	{	
-		/*
-		$varValue = deserialize($this->getPost($this->strName));
-		
-		if ($varValue != '' && !$this->isValidOption($varValue))
-		{
-			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['invalid'], $varValue));
-		}
-		
-		$this->varValue = $varValue;
-		*/
-		
+	{		
 		$mandatory = $this->mandatory;
 		$options = $this->getPost($this->strName);
 
@@ -170,17 +156,4 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 		
 		return $strBuffer;
 	}
-	
-	
-	/**
-	 * Parse the template file and return it as string
-	 */
-	/*
-	public function parse($arrAttributes=null)
-	{		
-		$this->arrOptions = deserialize($this->protectedOptions, true);
-		
-		return parent::parse($arrAttributes);
-	}
-	*/
 }

@@ -4,7 +4,7 @@
  * protected select
  * Adds a new formula select widget which hides the internal field values in the frontend
  *
- * @copyright  Christian Barkowsky 2015, Jan Theofel 2011-2014, ETES GmbH 2010
+ * @copyright  Christian Barkowsky 2015-2017, Jan Theofel 2011-2014, ETES GmbH 2010
  * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
  * @author     Jan Theofel <jan@theofel.de>
  * @author     Andreas Schempp <andreas@schempp.ch>
@@ -15,7 +15,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_form_field']['palettes']['protectedselect'] = '{type_legend},type,name,label;{options_legend},protectedOptions;{fconfig_legend},mandatory,multiple;{expert_legend:hide},class,accesskey;{submit_legend},addSubmit';
+$GLOBALS['TL_DCA']['tl_form_field']['palettes']['protectedselect'] = '{type_legend},type,name,label;{options_legend},protectedOptions;{fconfig_legend},mandatory,multiple;{expert_legend:hide},class,accesskey,tabindex;{template_legend:hide},customTpl;{submit_legend},addSubmit';
 
 
 /**
@@ -23,9 +23,9 @@ $GLOBALS['TL_DCA']['tl_form_field']['palettes']['protectedselect'] = '{type_lege
  */
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['protectedOptions'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_form_field']['protectedOptions'],
-	'exclude'                 => true,
-	'inputType'               => 'protectedOptionWizard',
-	'eval'                    => array('mandatory'=>true),
-	'sql'                     => "blob NULL",
+    'label'                   => &$GLOBALS['TL_LANG']['tl_form_field']['protectedOptions'],
+    'exclude'                 => true,
+    'inputType'               => 'protectedOptionWizard',
+    'eval'                    => array('mandatory'=>true),
+    'sql'                     => "blob NULL",
 );

@@ -27,7 +27,7 @@ class ProtectedOptionWizard extends \OptionWizard
     {
         $arrReferences = array();
         $mandatory = $this->mandatory;
-        $options = deserialize(\Input::post($this->strName)); // $this->getPost
+        $options = deserialize(\Input::post($this->strName));
 
         // Check labels only (values can be empty)
         if (is_array($options))
@@ -104,7 +104,6 @@ class ProtectedOptionWizard extends \OptionWizard
             $this->Database->prepare("UPDATE " . $this->strTable . " SET " . $this->strField . "=? WHERE id=?")
                 ->execute(serialize($this->varValue), $this->currentRecord);
 
-            //$this->redirect(preg_replace('/&(amp;)?cid=[^&]*/i', '', preg_replace('/&(amp;)?' . preg_quote($strCommand, '/') . '=[^&]*/i', '', $this->Environment->request)));
             $this->redirect(preg_replace('/&(amp;)?cid=[^&]*/i', '', preg_replace('/&(amp;)?' . preg_quote($strCommand, '/') . '=[^&]*/i', '', \Environment::get('request'))));
         }
 
@@ -115,8 +114,7 @@ class ProtectedOptionWizard extends \OptionWizard
         }
 
         // Begin table
-        //$return = '<table class="tl_optionwizard" id="ctrl_'.$this->strId.'">
-        $return .= '<table cellspacing="0" cellpadding="0" class="tl_optionwizard" id="ctrl_'.$this->strId.'" summary="Field wizard">
+        $return = '<table class="tl_optionwizard" id="ctrl_'.$this->strId.'" summary="Field wizard">
   <thead>
     <tr>
       <th>'.$GLOBALS['TL_LANG'][$this->strTable]['opReference'].'</th>
@@ -144,15 +142,12 @@ class ProtectedOptionWizard extends \OptionWizard
             $return .= '
       <td style="white-space:nowrap; padding-left:3px;">';
 
-            foreach ($arrButtons as $button)
-            {
+            foreach ($arrButtons as $button) {
                 $class = ($button == 'up' || $button == 'down') ? ' class="button-move"' : '';
 
-                if ($button == 'drag')
-                {
+                if ($button == 'drag') {
                     $return .= \Image::getHtml('drag.gif', '', 'class="drag-handle" title="' . sprintf($GLOBALS['TL_LANG']['MSC']['move']) . '"');
-                }
-                else {
+                } else {
                     $return .= '<a href="'.$this->addToUrl('&amp;'.$strCommand.'='.$button.'&amp;cid='.$i.'&amp;id='.$this->currentRecord).'"' . $class . ' title="'.specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'" onclick="Backend.optionsWizard(this,\''.$button.'\',\'ctrl_'.$this->strId.'\');return false">'.\Image::getHtml($button.'.gif', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</a> ';
                 }
             }

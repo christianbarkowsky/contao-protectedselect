@@ -4,7 +4,7 @@
  * protected select
  * Adds a new formula select widget which hides the internal field values in the frontend
  *
- * @copyright  Christian Barkowsky 2015-2016, Jan Theofel 2011-2014, ETES GmbH 2010
+ * @copyright  Christian Barkowsky 2015-2017, Jan Theofel 2011-2014, ETES GmbH 2010
  * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
  * @author     Jan Theofel <jan@theofel.de>
  * @author     Andreas Schempp <andreas@schempp.ch>

@@ -19,14 +19,6 @@ class FormProtectedSelectMenu extends \FormSelectMenu
 {
 
     /**
-     * Template
-     *
-     * @var string
-     */
-    protected $strTemplate = 'form_widget';
-
-
-    /**
      * Add specific attributes
      */
     public function __set($strKey, $varValue)

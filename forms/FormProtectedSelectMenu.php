@@ -140,7 +140,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
     {
         $this->arrOptions = deserialize($this->protectedOptions, true);
 
-        if (!is_array($this->varValue) && !strlen($this->varValue) && isset(\Input::get($this->strName)) {
+        if (!is_array($this->varValue) && !strlen($this->varValue) && isset(\Input::get($this->strName)) ) {
             $this->varValue = \Input::get($this->strName);
         }
 

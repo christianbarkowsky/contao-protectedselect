@@ -138,23 +138,6 @@ class ProtectedOptionWizard extends \OptionWizard
       <td><input type="checkbox" name="'.$this->strId.'['.$i.'][default]" id="'.$this->strId.'_default_'.$i.'" class="fw_checkbox" value="1"'.($this->varValue[$i]['default'] ? ' checked="checked"' : '').' /> <label for="'.$this->strId.'_default_'.$i.'">'.$GLOBALS['TL_LANG'][$this->strTable]['opDefault'].'</label></td>
       <td><input type="checkbox" name="'.$this->strId.'['.$i.'][group]" id="'.$this->strId.'_group_'.$i.'" class="fw_checkbox" value="1"'.($this->varValue[$i]['group'] ? ' checked="checked"' : '').' /> <label for="'.$this->strId.'_group_'.$i.'">'.$GLOBALS['TL_LANG'][$this->strTable]['opGroup'].'</label></td>';
 
-            // Add row buttons
-/*            $return .= '
-      <td style="white-space:nowrap; padding-left:3px;">';
-
-            foreach ($arrButtons as $button) {
-                $class = ($button == 'up' || $button == 'down') ? ' class="button-move"' : '';
-
-                if ($button == 'drag') {
-                    $return .= \Image::getHtml('drag.gif', '', 'class="drag-handle" title="' . sprintf($GLOBALS['TL_LANG']['MSC']['move']) . '"');
-                } else {
-                    $return .= '<a href="'.$this->addToUrl('&amp;'.$strCommand.'='.$button.'&amp;cid='.$i.'&amp;id='.$this->currentRecord).'"' . $class . ' title="'.\StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'" onclick="Backend.optionsWizard(this,\''.$button.'\',\'ctrl_'.$this->strId.'\');return false">'.\Image::getHtml($button.'.gif', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</a> ';
-                }
-            }
-
-            $return .= '</td>
-    </tr>';
-*/
 
           // Add row buttons
           $return .= '
@@ -173,11 +156,13 @@ class ProtectedOptionWizard extends \OptionWizard
           }
 
           $return .= '</td>
-
+          </tr>';
         }
 
         return $return.'
-  </tbody>
-  </table>';
+
+      </tbody>
+      </table>
+      <script>Backend.optionsWizard("ctrl_'.$this->strId.'")</script>';
     }
 }

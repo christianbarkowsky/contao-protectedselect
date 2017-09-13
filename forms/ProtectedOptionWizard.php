@@ -125,7 +125,7 @@ class ProtectedOptionWizard extends \OptionWizard
       <th>&nbsp;</th>
     </tr>
   </thead>
-  <tbody>';
+  <tbody class="sortable">';
 
         // Add fields
         for ($i=0; $i<count($this->varValue); $i++)
@@ -139,7 +139,7 @@ class ProtectedOptionWizard extends \OptionWizard
       <td><input type="checkbox" name="'.$this->strId.'['.$i.'][group]" id="'.$this->strId.'_group_'.$i.'" class="fw_checkbox" value="1"'.($this->varValue[$i]['group'] ? ' checked="checked"' : '').' /> <label for="'.$this->strId.'_group_'.$i.'">'.$GLOBALS['TL_LANG'][$this->strTable]['opGroup'].'</label></td>';
 
             // Add row buttons
-            $return .= '
+/*            $return .= '
       <td style="white-space:nowrap; padding-left:3px;">';
 
             foreach ($arrButtons as $button) {
@@ -154,6 +154,26 @@ class ProtectedOptionWizard extends \OptionWizard
 
             $return .= '</td>
     </tr>';
+*/
+
+          // Add row buttons
+          $return .= '
+          <td>';
+
+          foreach ($arrButtons as $button)
+          {
+            if ($button == 'drag')
+            {
+              $return .= ' <button type="button" class="drag-handle" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']) . '">' . \Image::getHtml('drag.svg') . '</button>';
+            }
+            else
+            {
+              $return .= ' <button type="button" data-command="' . $button . '" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]) . '">' . \Image::getHtml($button.'.svg') . '</button>';
+            }
+          }
+
+          $return .= '</td>
+
         }
 
         return $return.'

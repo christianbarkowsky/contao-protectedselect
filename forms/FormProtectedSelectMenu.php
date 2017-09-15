@@ -136,7 +136,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
     /**
      * Generate the widget and return it as string
      */
-    public function generate()
+    public function getOptions()
     {
         $this->arrOptions = deserialize($this->protectedOptions, true);
 
@@ -150,10 +150,9 @@ class FormProtectedSelectMenu extends \FormSelectMenu
             $this->arrOptions[$k]['value'] = $option['reference'];
         }
 
-        $strBuffer = parent::generate();
+        $strBuffer = parent::getOptions();
 
         $this->arrOptions = $arrOptions;
 
-        return $strBuffer;
     }
 }

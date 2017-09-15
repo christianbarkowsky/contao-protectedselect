@@ -150,7 +150,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
             $this->arrOptions[$k]['value'] = $option['reference'];
         }
 
-        $strBuffer = parent::getOptions();
+        return parent::getOptions();
 
         $this->arrOptions = $arrOptions;
 

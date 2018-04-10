@@ -23,7 +23,7 @@ class FormProtectedSelectMenu extends \FormSelectMenu
      *
      * @var string
      */
-    protected $strTemplate = 'form_widget';
+    protected $strTemplate = 'form_protected_select';
 
 
     /**

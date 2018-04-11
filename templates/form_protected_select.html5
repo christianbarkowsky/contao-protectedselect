@@ -1,9 +1,4 @@
-<?php if (!$this->tableless): ?>
-    <tr class="<?= $this->rowClass ?>">
-        <td class="col_0 col_first"><?= $this->generateLabel() ?></td>
-        <td class="col_1 col_last"><?= $this->generateWithError() ?></td>
-    </tr>
-<?php else: ?>
+<div class="widget widget-select">
     <?= $this->generateLabel() ?>
     <?= $this->generateWithError() ?><br>
-<?php endif; ?>
+</div>

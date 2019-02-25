@@ -1,4 +1,8 @@
-<div class="widget widget-select">
+<?php $this->extend('form_row'); ?>
+<?php $this->block('label'); ?>
     <?= $this->generateLabel() ?>
-    <?= $this->generateWithError() ?><br>
-</div>
+<?php $this->endblock(); ?>
+
+<?php $this->block('field'); ?>
+    <?= $this->generateWithError() ?>
+<?php $this->endblock(); ?>

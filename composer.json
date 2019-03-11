@@ -1,6 +1,5 @@
 {
     "name":"christianbarkowsky/contao-protectedselect",
-    "version": "1.1.5",
     "description":"Adds a new formula select widget which hides the internal field values in the frontend",
     "keywords":["contao", "form", "field", "protect"],
     "type":"contao-module",

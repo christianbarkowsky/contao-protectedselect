@@ -1,0 +1,4 @@
+<div class="widget widget-select">
+    <?= $this->generateLabel() ?>
+    <?= $this->generateWithError() ?><br>
+</div>

@@ -7,3 +7,9 @@ Stellt ein Select-Menu für Formulare bereit, deren Klartextwerte nicht im Front
 ## Protected select menu
 
 Adds a new form select widget which hides the internal field values in the front end.
+
+## Screenshot
+
+![](docs/backend.png)
+
+![](docs/frontend.png)

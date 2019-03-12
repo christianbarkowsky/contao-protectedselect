@@ -14,6 +14,6 @@ Adds a new form select widget which hides the internal field values in the front
 
 ![Backend form](docs/backend.png)
 
-**Backend form**
+**Frontend form**
 
 ![Frontend form](docs/frontend.png)

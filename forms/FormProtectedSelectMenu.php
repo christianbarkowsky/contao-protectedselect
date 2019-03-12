@@ -16,6 +16,7 @@
 namespace Contao;
 
 use Contao\Input;
+use Contao\StringUtil;
 use Contao\FormSelectMenu;
 
 class FormProtectedSelectMenu extends FormSelectMenu
@@ -41,7 +42,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
     {
         switch ($strKey) {
             case 'value':
-                $this->arrOptions = deserialize($this->protectedOptions, true);
+                $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
 
                 if (is_array($this->varValue)) {
                     $arrValues = [];
@@ -112,7 +113,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
 
     protected function isValidOption($varInput)
     {
-        $protectedOptions = deserialize($this->protectedOptions, true);
+        $protectedOptions = StringUtil::deserialize($this->protectedOptions, true);
 
         foreach ($protectedOptions as $k => $option) {
             if ($varInput == $option['reference']) {
@@ -129,7 +130,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
      */
     public function generate()
     {
-        $this->arrOptions = deserialize($this->protectedOptions, true);
+        $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
 
         if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName])) {
             $this->varValue = Input::get($this->strName);

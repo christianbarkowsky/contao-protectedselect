@@ -19,6 +19,7 @@ use Contao\Input;
 use Contao\Image;
 use Contao\Database;
 use Contao\Controller;
+use Contao\StringUtil;
 use Contao\Environment;
 use Contao\OptionWizard;
 
@@ -32,7 +33,7 @@ class ProtectedOptionWizard extends OptionWizard
     {
         $arrReferences = array();
         $mandatory = $this->mandatory;
-        $options = deserialize(Input::post($this->strName));
+        $options = StringUtil::deserialize(Input::post($this->strName));
 
         // Check labels only (values can be empty)
         if (is_array($options)) {
@@ -97,7 +98,7 @@ class ProtectedOptionWizard extends OptionWizard
             }
 
             Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET " . $this->strField . "=? WHERE id=?")
-                ->execute(serialize($this->varValue), $this->currentRecord);
+                ->execute(StringUtil::serialize($this->varValue), $this->currentRecord);
 
             Controller::redirect(preg_replace('/&(amp;)?cid=[^&]*/i', '', preg_replace('/&(amp;)?' . preg_quote($strCommand, '/') . '=[^&]*/i', '', Environment::get('request'))));
         }
@@ -125,9 +126,9 @@ class ProtectedOptionWizard extends OptionWizard
         for ($i=0; $i<count($this->varValue); $i++) {
             $return .= '
     <tr>
-      <td><input type="text" name="'.$this->strId.'['.$i.'][reference]" id="'.$this->strId.'_reference_'.$i.'" class="tl_text" value="'.specialchars($this->varValue[$i]['reference']).'" /></td>
-      <td><input type="text" name="'.$this->strId.'['.$i.'][value]" id="'.$this->strId.'_value_'.$i.'" class="tl_text" value="'.specialchars($this->varValue[$i]['value']).'" /></td>
-      <td style="width: auto"><input type="text" name="'.$this->strId.'['.$i.'][label]" id="'.$this->strId.'_label_'.$i.'" class="tl_text" value="'.specialchars($this->varValue[$i]['label']).'" /></td>
+      <td><input type="text" name="'.$this->strId.'['.$i.'][reference]" id="'.$this->strId.'_reference_'.$i.'" class="tl_text" value="'.StringUtil::specialchars($this->varValue[$i]['reference']).'" /></td>
+      <td><input type="text" name="'.$this->strId.'['.$i.'][value]" id="'.$this->strId.'_value_'.$i.'" class="tl_text" value="'.StringUtil::specialchars($this->varValue[$i]['value']).'" /></td>
+      <td style="width: auto"><input type="text" name="'.$this->strId.'['.$i.'][label]" id="'.$this->strId.'_label_'.$i.'" class="tl_text" value="'.StringUtil::specialchars($this->varValue[$i]['label']).'" /></td>
       <td><input type="checkbox" name="'.$this->strId.'['.$i.'][default]" id="'.$this->strId.'_default_'.$i.'" class="fw_checkbox" value="1"'.($this->varValue[$i]['default'] ? ' checked="checked"' : '').' /> <label for="'.$this->strId.'_default_'.$i.'">'.$GLOBALS['TL_LANG'][$this->strTable]['opDefault'].'</label></td>
       <td><input type="checkbox" name="'.$this->strId.'['.$i.'][group]" id="'.$this->strId.'_group_'.$i.'" class="fw_checkbox" value="1"'.($this->varValue[$i]['group'] ? ' checked="checked"' : '').' /> <label for="'.$this->strId.'_group_'.$i.'">'.$GLOBALS['TL_LANG'][$this->strTable]['opGroup'].'</label></td>';
 
@@ -141,7 +142,7 @@ class ProtectedOptionWizard extends OptionWizard
                 if ($button == 'drag') {
                     $return .= '<button type="button" class="drag-handle" title="" aria-hidden="true">' . Image::getHtml('drag.svg', '', 'class="drag-handle" title="' . sprintf($GLOBALS['TL_LANG']['MSC']['move']) . '"') . '</button>';
                 } else {
-                    $return .= '<button type="button" data-command="'.$button.'"' . $class . ' title="'.specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
+                    $return .= '<button type="button" data-command="'.$button.'"' . $class . ' title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
                 }
             }
 

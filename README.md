@@ -10,6 +10,10 @@ Adds a new form select widget which hides the internal field values in the front
 
 ## Screenshot
 
+**Backend form**
+
 ![Backend form](docs/backend.png)
+
+**Backend form**
 
 ![Frontend form](docs/frontend.png)

@@ -1,8 +1,9 @@
-# protected select
+# protectedselect Contao extension
 
-Adds a new formular select widget which hides the internal field values in the frontend
+## Geschütztes Select-Menü
 
-License: http://www.gnu.org/licenses/lgpl-3.0.html LGPL <br>
-Author: [christianbarkowsky](https://brkwsky.de)  
-Author: [jantheofel](https://www.theofel.com)  
-Author: [aschempp](http://www.terminal42.ch)
+Stellt ein Select-Menu für Formulare bereit, deren Klartextwerte nicht im Frontendformular angegeben sind.
+
+## Protected select menu
+
+Adds a new form select widget which hides the internal field values in the front end.

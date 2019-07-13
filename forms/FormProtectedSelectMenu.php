@@ -72,29 +72,29 @@ class FormProtectedSelectMenu extends FormSelectMenu
         }
     }
 
-	/**
-	 * Generate the options
-	 *
-	 * @return array The options array
-	 */
-	protected function getOptions()
-	{
+    /**
+     * Generate the options
+     *
+     * @return array The options array
+     */
+    protected function getOptions()
+    {
         $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
 
         if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName])) {
             $this->varValue = Input::get($this->strName);
         }
 
-        $arrOptions = $this->arrOptions;
+        //$arrOptions = $this->arrOptions;
 
         foreach ($this->arrOptions as $k => $option) {
             $this->arrOptions[$k]['value'] = $option['reference'];
         }
 
-        $this->arrOptions = $arrOptions;
+        //$this->arrOptions = $arrOptions;
         
         return parent::getOptions();
-	}
+    }
 
     /**
      * Check for a valid option

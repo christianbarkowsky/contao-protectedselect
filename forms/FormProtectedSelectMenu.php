@@ -85,14 +85,10 @@ class FormProtectedSelectMenu extends FormSelectMenu
             $this->varValue = Input::get($this->strName);
         }
 
-        //$arrOptions = $this->arrOptions;
-
         foreach ($this->arrOptions as $k => $option) {
             $this->arrOptions[$k]['value'] = $option['reference'];
         }
 
-        //$this->arrOptions = $arrOptions;
-        
         return parent::getOptions();
     }
 
@@ -147,29 +143,4 @@ class FormProtectedSelectMenu extends FormSelectMenu
 
         return false;
     }
-
-
-    /**
-     * Generate the widget and return it as string
-    public function generate()
-    {
-        $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
-
-        if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName])) {
-            $this->varValue = Input::get($this->strName);
-        }
-
-        $arrOptions = $this->arrOptions;
-
-        foreach ($this->arrOptions as $k => $option) {
-            $this->arrOptions[$k]['value'] = $option['reference'];
-        }
-
-        $strBuffer = parent::generate();
-
-        $this->arrOptions = $arrOptions;
-
-        return $strBuffer;
-    }
-     */
 }

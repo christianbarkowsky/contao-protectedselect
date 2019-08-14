@@ -25,7 +25,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
     /**
      * @var string
      */
-    protected $strTemplate = 'form_protected_select';
+    protected $strTemplate = 'form_select';
 
     /**
      * Add specific attributes

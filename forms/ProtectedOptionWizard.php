@@ -23,6 +23,10 @@ use Contao\StringUtil;
 use Contao\Environment;
 use Contao\OptionWizard;
 
+/**
+ * Class ProtectedOptionWizard
+ * @package Contao
+ */
 class ProtectedOptionWizard extends OptionWizard
 {
 
@@ -31,7 +35,7 @@ class ProtectedOptionWizard extends OptionWizard
      */
     public function validate()
     {
-        $arrReferences = array();
+        $arrReferences = [];
         $mandatory = $this->mandatory;
         $options = StringUtil::deserialize(Input::post($this->strName));
 
@@ -74,7 +78,7 @@ class ProtectedOptionWizard extends OptionWizard
      */
     public function generate()
     {
-        $arrButtons = array('copy', 'delete', 'drag');
+        $arrButtons = ['copy', 'delete', 'drag'];
         $strCommand = 'cmd_' . $this->strField;
 
         // Change the order

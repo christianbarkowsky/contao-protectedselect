@@ -20,10 +20,3 @@
     'Contao\FormProtectedSelectMenu' => 'system/modules/protectedselect/forms/FormProtectedSelectMenu.php',
     'Contao\ProtectedOptionWizard'   => 'system/modules/protectedselect/forms/ProtectedOptionWizard.php',
 ]);
-
-/**
- * Register the templates
- */
-\Contao\TemplateLoader::addFiles([
-    'form_protected_select'          => 'system/modules/protectedselect/templates'
-]);

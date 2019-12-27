@@ -109,7 +109,7 @@ class ProtectedOptionWizard extends OptionWizard
         }
 
         // Begin table
-        $return = '<table class="tl_optionwizard" id="ctrl_'.$this->strId.'" summary="Field wizard">
+        $return = '<table class="tl_optionwizard" style="max-width:none" id="ctrl_'.$this->strId.'" summary="Field wizard">
   <thead>
     <tr>
       <th>'.$GLOBALS['TL_LANG'][$this->strTable]['opReference'].'</th>

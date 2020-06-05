@@ -11,6 +11,7 @@
             "role":"Developer"
         }
     ],
+    "homepage": "https://github.com/christianbarkowsky/contao-protectedselect",
     "support":{
             "issues":"https://github.com/christianbarkowsky/contao-protectedselect/issues",
             "source":"https://github.com/christianbarkowsky/contao-protectedselect"

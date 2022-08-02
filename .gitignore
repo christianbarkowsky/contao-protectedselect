@@ -2,3 +2,7 @@
 .DS_Store
 thumbs.db
 Thumbs.db
+composer.lock
+var
+vendor
+.idea

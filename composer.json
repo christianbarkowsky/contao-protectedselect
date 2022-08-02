@@ -1,13 +1,13 @@
 {
     "name":"christianbarkowsky/contao-protectedselect",
-    "description":"Adds a new formula select widget which hides the internal field values in the frontend",
+    "description":"Adds a new form select widget which hides the internal field values in the frontend",
     "keywords":["contao", "form", "field", "selectmenu"],
-    "type":"contao-module",
+    "type":"contao-bundle",
     "license":"LGPL-3.0+",
     "authors":[
         {
-            "name":"Christian Barkowsky",
-            "homepage":"https://brkwsky.de",
+            "name":"Plenta",
+            "homepage":"https://plenta.io",
             "role":"Developer"
         }
     ],
@@ -17,14 +17,27 @@
             "source":"https://github.com/christianbarkowsky/contao-protectedselect"
     },
     "require":{
-            "php":">=5.6",
-            "contao/core-bundle": "~4.4"
+            "php":">=7.4",
+            "contao/core-bundle": "~4.9"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "contao/manager-bundle": "~4.9"
     },
     "extra": {
-        "contao": {
-            "sources": {
-                "": "system/modules/protectedselect"
-            }
+        "contao-manager-plugin": "Plenta\\ProtectedSelect\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Plenta\\ProtectedSelect\\": "src/Plenta/ProtectedSelect"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "contao-components/installer": true,
+            "contao/manager-plugin": true,
+            "contao-community-alliance/composer-plugin": true
         }
     }
 }

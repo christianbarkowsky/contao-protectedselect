@@ -13,7 +13,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-namespace Contao;
+namespace Plenta\ProtectedSelect\Classes;
 
 use Contao\Input;
 use Contao\StringUtil;

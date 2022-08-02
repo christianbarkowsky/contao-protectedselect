@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    Plenta\ProtectedSelect\:
+            resource: ../../../ProtectedSelect
+            exclude: ../../../ProtectedSelect/{Entity,Migrations,Resources,Tests,Classes}

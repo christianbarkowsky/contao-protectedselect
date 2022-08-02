@@ -14,9 +14,13 @@
  */
 
 /**
- * Register the classes
+ * Form fields
  */
-\Contao\ClassLoader::addClasses([
-    'Contao\FormProtectedSelectMenu' => 'system/modules/protectedselect/forms/FormProtectedSelectMenu.php',
-    'Contao\ProtectedOptionWizard'   => 'system/modules/protectedselect/forms/ProtectedOptionWizard.php',
-]);
+$GLOBALS['TL_FFL']['protectedselect'] = 'FormProtectedSelectMenu';
+
+/**
+ * Backend form fields
+ */
+$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';
+
+dump('test');

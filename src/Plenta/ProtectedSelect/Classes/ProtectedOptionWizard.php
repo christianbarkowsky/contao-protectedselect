@@ -13,8 +13,9 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-namespace Contao;
+namespace Plenta\ProtectedSelect\Classes;
 
+use Contao\ArrayUtil;
 use Contao\Input;
 use Contao\Image;
 use Contao\Database;
@@ -85,15 +86,7 @@ class ProtectedOptionWizard extends OptionWizard
         if (Input::get($strCommand) && is_numeric(Input::get('cid')) && Input::get('id') == $this->currentRecord) {
             switch (Input::get($strCommand)) {
                 case 'copy':
-                    array_insert($this->varValue, Input::get('cid'), array($this->varValue[Input::get('cid')]));
-                    break;
-
-                case 'up':
-                    $this->varValue = array_move_up($this->varValue, Input::get('cid'));
-                    break;
-
-                case 'down':
-                    $this->varValue = array_move_down($this->varValue, Input::get('cid'));
+                    ArrayUtil::arrayInsert($this->varValue, Input::get('cid'), array($this->varValue[Input::get('cid')]));
                     break;
 
                 case 'delete':
@@ -141,8 +134,6 @@ class ProtectedOptionWizard extends OptionWizard
       <td style="white-space:nowrap; padding-left:3px;">';
 
             foreach ($arrButtons as $button) {
-                $class = ($button == 'up' || $button == 'down') ? ' class="button-move"' : '';
-
                 if ($button == 'drag') {
                     $return .= '<button type="button" class="drag-handle" title="" aria-hidden="true">' . Image::getHtml('drag.svg', '', 'class="drag-handle" title="' . sprintf($GLOBALS['TL_LANG']['MSC']['move']) . '"') . '</button>';
                 } else {

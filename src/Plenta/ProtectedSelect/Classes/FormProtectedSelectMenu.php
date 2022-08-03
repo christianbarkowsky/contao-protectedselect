@@ -1,42 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * protected select
- * Adds a new formula select widget which hides the internal field values in the frontend
+ * Plenta Protected Select Bundle for Contao Open Source CMS
  *
- * @copyright  Christian Barkowsky 2015-2019
- * @copyright  Jan Theofel 2011-2014, ETES GmbH 2010
- * @copyright  ETES GmbH 2010
- * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
- * @author     Jan Theofel <jan@theofel.de>
- * @author     Andreas Schempp <andreas@schempp.ch>
- * @license    http://opensource.org/licenses/lgpl-3.0.html
+ * @copyright     Copyright (c) 2015-2022, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       http://opensource.org/licenses/lgpl-3.0.html
+ * @link          https://github.com/plenta/
  */
 
-namespace Contao;
+namespace Plenta\ProtectedSelect\Classes;
 
+use Contao\FormSelectMenu;
 use Contao\Input;
 use Contao\StringUtil;
-use Contao\FormSelectMenu;
 
 class FormProtectedSelectMenu extends FormSelectMenu
 {
-
     /**
      * @var string
      */
     protected $strTemplate = 'form_select';
 
     /**
-     * Add specific attributes
+     * Add specific attributes.
+     *
+     * @param mixed $strKey
+     * @param mixed $varValue
      */
-    public function __set($strKey, $varValue)
+    public function __set($strKey, $varValue): void
     {
         parent::__set($strKey, $varValue);
     }
 
     /**
-     * Add specific attributes
+     * Add specific attributes.
+     *
+     * @param mixed $strKey
      */
     public function __get($strKey)
     {
@@ -44,14 +46,14 @@ class FormProtectedSelectMenu extends FormSelectMenu
             case 'value':
                 $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
 
-                if (is_array($this->varValue)) {
+                if (\is_array($this->varValue)) {
                     $arrValues = [];
 
                     foreach ($this->varValue as $k => $value) {
                         foreach ($this->arrOptions as $option) {
                             if ($option['reference'] == $value) {
                                 $arrValues[$k] = $option['value'];
-                                continue(2);
+                                continue 2;
                             }
                         }
                     }
@@ -59,7 +61,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
                     return $arrValues;
                 }
 
-                foreach( $this->arrOptions as $option ) {
+                foreach ($this->arrOptions as $option) {
                     if ($option['reference'] == $this->varValue) {
                         return $option['value'];
                     }
@@ -73,38 +75,17 @@ class FormProtectedSelectMenu extends FormSelectMenu
     }
 
     /**
-     * Generate the options
-     *
-     * @return array The options array
+     * Check for a valid option.
      */
-    protected function getOptions()
-    {
-        $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
-
-        if (!is_array($this->varValue) && !strlen($this->varValue) && isset($_GET[$this->strName])) {
-            $this->varValue = Input::get($this->strName);
-        }
-
-        foreach ($this->arrOptions as $k => $option) {
-            $this->arrOptions[$k]['value'] = $option['reference'];
-        }
-
-        return parent::getOptions();
-    }
-
-    /**
-     * Check for a valid option
-     */
-    /**/
-    public function validate()
+    public function validate(): void
     {
         $mandatory = $this->mandatory;
         $options = $this->getPost($this->strName);
 
         // Check if there is at least one value
-        if ($mandatory && is_array($options)) {
+        if ($mandatory && \is_array($options)) {
             foreach ($options as $option) {
-                if (strlen($option)) {
+                if (\strlen($option)) {
                     $this->mandatory = false;
                     break;
                 }
@@ -115,7 +96,7 @@ class FormProtectedSelectMenu extends FormSelectMenu
 
         // Check for a valid option (see #4383)
         if (!empty($varInput) && !$this->isValidOption($varInput)) {
-            $this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['invalid'], (is_array($varInput) ? implode(', ', $varInput) : $varInput)));
+            $this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['invalid'], (\is_array($varInput) ? implode(', ', $varInput) : $varInput)));
         }
 
         // Add class "error"
@@ -129,6 +110,26 @@ class FormProtectedSelectMenu extends FormSelectMenu
         if ($mandatory) {
             $this->mandatory = true;
         }
+    }
+
+    /**
+     * Generate the options.
+     *
+     * @return array The options array
+     */
+    protected function getOptions()
+    {
+        $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
+
+        if (!\is_array($this->varValue) && !\strlen($this->varValue) && isset($_GET[$this->strName])) {
+            $this->varValue = Input::get($this->strName);
+        }
+
+        foreach ($this->arrOptions as $k => $option) {
+            $this->arrOptions[$k]['value'] = $option['reference'];
+        }
+
+        return parent::getOptions();
     }
 
     protected function isValidOption($varInput)

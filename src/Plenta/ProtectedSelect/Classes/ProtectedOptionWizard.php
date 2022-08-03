@@ -1,52 +1,49 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * protected select
- * Adds a new formula select widget which hides the internal field values in the frontend
+ * Plenta Protected Select Bundle for Contao Open Source CMS
  *
- * @copyright  Christian Barkowsky 2015-2019
- * @copyright  Jan Theofel 2011-2014, ETES GmbH 2010
- * @copyright  ETES GmbH 2010
- * @author     Christian Barkowsky <hallo@christianbarkowsky.de>
- * @author     Jan Theofel <jan@theofel.de>
- * @author     Andreas Schempp <andreas@schempp.ch>
- * @license    http://opensource.org/licenses/lgpl-3.0.html
+ * @copyright     Copyright (c) 2015-2022, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       http://opensource.org/licenses/lgpl-3.0.html
+ * @link          https://github.com/plenta/
  */
 
-namespace Contao;
+namespace Plenta\ProtectedSelect\Classes;
 
-use Contao\Input;
-use Contao\Image;
-use Contao\Database;
+use Contao\ArrayUtil;
 use Contao\Controller;
-use Contao\StringUtil;
+use Contao\Database;
 use Contao\Environment;
+use Contao\Image;
+use Contao\Input;
 use Contao\OptionWizard;
+use Contao\StringUtil;
 
 /**
- * Class ProtectedOptionWizard
- * @package Contao
+ * Class ProtectedOptionWizard.
  */
 class ProtectedOptionWizard extends OptionWizard
 {
-
     /**
-     * Validate input and set value
+     * Validate input and set value.
      */
-    public function validate()
+    public function validate(): void
     {
         $arrReferences = [];
         $mandatory = $this->mandatory;
         $options = StringUtil::deserialize(Input::post($this->strName));
 
         // Check labels only (values can be empty)
-        if (is_array($options)) {
+        if (\is_array($options)) {
             foreach ($options as $key => $option) {
                 $options[$key]['label'] = trim($option['label']);
                 $options[$key]['value'] = trim($option['value']);
                 $options[$key]['reference'] = trim($option['reference']);
 
-                if (strlen($options[$key]['label'])) {
+                if (\strlen($options[$key]['label'])) {
                     $this->mandatory = false;
                 }
 
@@ -54,7 +51,7 @@ class ProtectedOptionWizard extends OptionWizard
             }
         }
 
-        if (count(array_unique($arrReferences)) != count($arrReferences)) {
+        if (\count(array_unique($arrReferences)) != \count($arrReferences)) {
             $this->addError($GLOBALS['TL_LANG']['ERR']['uniqueReference']);
         }
 
@@ -71,45 +68,18 @@ class ProtectedOptionWizard extends OptionWizard
         }
     }
 
-
     /**
-     * Generate the widget and return it as string
+     * Generate the widget and return it as string.
+     *
      * @return string
      */
     public function generate()
     {
         $arrButtons = ['copy', 'delete', 'drag'];
-        $strCommand = 'cmd_' . $this->strField;
-
-        // Change the order
-        if (Input::get($strCommand) && is_numeric(Input::get('cid')) && Input::get('id') == $this->currentRecord) {
-            switch (Input::get($strCommand)) {
-                case 'copy':
-                    array_insert($this->varValue, Input::get('cid'), array($this->varValue[Input::get('cid')]));
-                    break;
-
-                case 'up':
-                    $this->varValue = array_move_up($this->varValue, Input::get('cid'));
-                    break;
-
-                case 'down':
-                    $this->varValue = array_move_down($this->varValue, Input::get('cid'));
-                    break;
-
-                case 'delete':
-                    $this->varValue = array_delete($this->varValue, Input::get('cid'));
-                    break;
-            }
-
-            Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET " . $this->strField . "=? WHERE id=?")
-                ->execute(StringUtil::serialize($this->varValue), $this->currentRecord);
-
-            Controller::redirect(preg_replace('/&(amp;)?cid=[^&]*/i', '', preg_replace('/&(amp;)?' . preg_quote($strCommand, '/') . '=[^&]*/i', '', Environment::get('request'))));
-        }
 
         // Make sure there is at least an empty array
-        if (!is_array($this->varValue) || !$this->varValue[0]) {
-            $this->varValue = array(array(''));
+        if (!\is_array($this->varValue) || !$this->varValue[0]) {
+            $this->varValue = [['']];
         }
 
         // Begin table
@@ -127,7 +97,7 @@ class ProtectedOptionWizard extends OptionWizard
   <tbody class="sortable">';
 
         // Add fields
-        for ($i=0; $i<count($this->varValue); $i++) {
+        for ($i = 0; $i < \count($this->varValue); ++$i) {
             $return .= '
     <tr>
       <td><input type="text" name="'.$this->strId.'['.$i.'][reference]" id="'.$this->strId.'_reference_'.$i.'" class="tl_text" value="'.StringUtil::specialchars($this->varValue[$i]['reference']).'" /></td>
@@ -141,12 +111,10 @@ class ProtectedOptionWizard extends OptionWizard
       <td style="white-space:nowrap; padding-left:3px;">';
 
             foreach ($arrButtons as $button) {
-                $class = ($button == 'up' || $button == 'down') ? ' class="button-move"' : '';
-
-                if ($button == 'drag') {
-                    $return .= '<button type="button" class="drag-handle" title="" aria-hidden="true">' . Image::getHtml('drag.svg', '', 'class="drag-handle" title="' . sprintf($GLOBALS['TL_LANG']['MSC']['move']) . '"') . '</button>';
+                if ('drag' == $button) {
+                    $return .= '<button type="button" class="drag-handle" title="" aria-hidden="true">'.Image::getHtml('drag.svg', '', 'class="drag-handle" title="'.$GLOBALS['TL_LANG']['MSC']['move'].'"').'</button>';
                 } else {
-                    $return .= '<button type="button" data-command="'.$button.'"' . $class . ' title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
+                    $return .= '<button type="button" data-command="'.$button.'" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
                 }
             }
 

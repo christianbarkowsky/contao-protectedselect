@@ -11,13 +11,12 @@ declare(strict_types=1);
  * @link          https://github.com/plenta/
  */
 
-/*
- * Form fields
- */
-
 use Plenta\ProtectedSelect\Classes\FormProtectedSelectMenu;
 use Plenta\ProtectedSelect\Classes\ProtectedOptionWizard;
 
+/*
+ * Form fields
+ */
 $GLOBALS['TL_FFL']['protectedselect'] = FormProtectedSelectMenu::class;
 
 /*

@@ -76,25 +76,6 @@ class ProtectedOptionWizard extends OptionWizard
     public function generate()
     {
         $arrButtons = ['copy', 'delete', 'drag'];
-        $strCommand = 'cmd_'.$this->strField;
-
-        // Change the order
-        if (Input::get($strCommand) && is_numeric(Input::get('cid')) && Input::get('id') == $this->currentRecord) {
-            switch (Input::get($strCommand)) {
-                case 'copy':
-                    ArrayUtil::arrayInsert($this->varValue, Input::get('cid'), [$this->varValue[Input::get('cid')]]);
-                    break;
-
-                case 'delete':
-                    $this->varValue = array_delete($this->varValue, Input::get('cid'));
-                    break;
-            }
-
-            Database::getInstance()->prepare('UPDATE '.$this->strTable.' SET '.$this->strField.'=? WHERE id=?')
-                ->execute(StringUtil::serialize($this->varValue), $this->currentRecord);
-
-            Controller::redirect(preg_replace('/&(amp;)?cid=[^&]*/i', '', preg_replace('/&(amp;)?'.preg_quote($strCommand, '/').'=[^&]*/i', '', Environment::get('request'))));
-        }
 
         // Make sure there is at least an empty array
         if (!\is_array($this->varValue) || !$this->varValue[0]) {
@@ -133,7 +114,7 @@ class ProtectedOptionWizard extends OptionWizard
                 if ('drag' == $button) {
                     $return .= '<button type="button" class="drag-handle" title="" aria-hidden="true">'.Image::getHtml('drag.svg', '', 'class="drag-handle" title="'.$GLOBALS['TL_LANG']['MSC']['move'].'"').'</button>';
                 } else {
-                    $return .= '<button type="button" data-command="'.$button.'"'.$class.' title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
+                    $return .= '<button type="button" data-command="'.$button.'" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'">'.Image::getHtml($button.'.svg', $GLOBALS['TL_LANG']['MSC']['ow_'.$button]).'</button> ';
                 }
             }
 

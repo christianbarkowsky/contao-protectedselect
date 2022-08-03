@@ -39,5 +39,8 @@
             "contao/manager-plugin": true,
             "contao-community-alliance/composer-plugin": true
         }
+    },
+    "replace": {
+        "contao-legacy/contao-protectedselect": "self.version"
     }
 }

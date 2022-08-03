@@ -14,9 +14,13 @@ declare(strict_types=1);
 /*
  * Form fields
  */
-$GLOBALS['TL_FFL']['protectedselect'] = 'FormProtectedSelectMenu';
+
+use Plenta\ProtectedSelect\Classes\FormProtectedSelectMenu;
+use Plenta\ProtectedSelect\Classes\ProtectedOptionWizard;
+
+$GLOBALS['TL_FFL']['protectedselect'] = FormProtectedSelectMenu::class;
 
 /*
  * Backend form fields
  */
-$GLOBALS['BE_FFL']['protectedOptionWizard'] = 'ProtectedOptionWizard';
+$GLOBALS['BE_FFL']['protectedOptionWizard'] = ProtectedOptionWizard::class;

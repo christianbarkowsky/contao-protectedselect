@@ -2,3 +2,6 @@
 .DS_Store
 thumbs.db
 Thumbs.db
+/vendor
+/composer.lock
+/.idea

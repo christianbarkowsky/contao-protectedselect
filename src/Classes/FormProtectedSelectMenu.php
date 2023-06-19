@@ -13,11 +13,18 @@ declare(strict_types=1);
 
 namespace Plenta\ProtectedSelect\Classes;
 
+use Contao\FormSelect;
 use Contao\FormSelectMenu;
 use Contao\Input;
 use Contao\StringUtil;
 
-class FormProtectedSelectMenu extends FormSelectMenu
+if(class_exists(FormSelect::class)) {
+    class SelectParent extends FormSelect {}
+} else {
+    class SelectParent extends FormSelectMenu {}
+}
+
+class FormProtectedSelectMenu extends SelectParent
 {
     /**
      * @var string

@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Plenta\ProtectedSelect\:
+            resource: ../src
+            exclude: ../src/{Entity,Migrations,Resources,Tests,Classes}

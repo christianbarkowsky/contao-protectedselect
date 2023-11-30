@@ -40,8 +40,5 @@
             "contao-community-alliance/composer-plugin": true,
             "php-http/discovery": true
         }
-    },
-    "replace": {
-        "contao-legacy/contao-protectedselect": "self.version"
     }
 }

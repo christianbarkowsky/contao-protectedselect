@@ -26,7 +26,7 @@ if(class_exists(FormSelect::class)) {
 
 class FormProtectedSelectMenu extends SelectParent
 {
-    protected string $strTemplate = 'form_select';
+    protected $strTemplate = 'form_select';
 
     public function __set($strKey, $varValue): void
     {

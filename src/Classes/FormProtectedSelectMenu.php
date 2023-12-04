@@ -26,27 +26,13 @@ if(class_exists(FormSelect::class)) {
 
 class FormProtectedSelectMenu extends SelectParent
 {
-    /**
-     * @var string
-     */
-    protected $strTemplate = 'form_select';
+    protected string $strTemplate = 'form_select';
 
-    /**
-     * Add specific attributes.
-     *
-     * @param mixed $strKey
-     * @param mixed $varValue
-     */
     public function __set($strKey, $varValue): void
     {
         parent::__set($strKey, $varValue);
     }
 
-    /**
-     * Add specific attributes.
-     *
-     * @param mixed $strKey
-     */
     public function __get($strKey)
     {
         switch ($strKey) {
@@ -81,18 +67,14 @@ class FormProtectedSelectMenu extends SelectParent
         }
     }
 
-    /**
-     * Check for a valid option.
-     */
     public function validate(): void
     {
         $mandatory = $this->mandatory;
         $options = $this->getPost($this->strName);
 
-        // Check if there is at least one value
-        if ($mandatory && \is_array($options)) {
+        if ($mandatory && is_array($options)) {
             foreach ($options as $option) {
-                if (\strlen($option)) {
+                if (strlen($option)) {
                     $this->mandatory = false;
                     break;
                 }
@@ -101,34 +83,31 @@ class FormProtectedSelectMenu extends SelectParent
 
         $varInput = $this->validator($options);
 
-        // Check for a valid option (see #4383)
         if (!empty($varInput) && !$this->isValidOption($varInput)) {
-            $this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['invalid'], (\is_array($varInput) ? implode(', ', $varInput) : $varInput)));
+            $this->addError(
+                sprintf(
+                    $GLOBALS['TL_LANG']['ERR']['invalid'],
+                    (is_array($varInput) ? implode(', ', $varInput) : $varInput)
+                )
+            );
         }
 
-        // Add class "error"
         if ($this->hasErrors()) {
             $this->class = 'error';
         } else {
             $this->varValue = $varInput;
         }
 
-        // Reset the property
         if ($mandatory) {
             $this->mandatory = true;
         }
     }
 
-    /**
-     * Generate the options.
-     *
-     * @return array The options array
-     */
-    protected function getOptions()
+    protected function getOptions(): array
     {
         $this->arrOptions = StringUtil::deserialize($this->protectedOptions, true);
 
-        if (!\is_array($this->varValue) && !\strlen($this->varValue) && isset($_GET[$this->strName])) {
+        if (!is_array($this->varValue) && !empty($this->varValue) && isset($_GET[$this->strName])) {
             $this->varValue = Input::get($this->strName);
         }
 
@@ -139,7 +118,7 @@ class FormProtectedSelectMenu extends SelectParent
         return parent::getOptions();
     }
 
-    protected function isValidOption($varInput)
+    protected function isValidOption($varInput): bool
     {
         $protectedOptions = StringUtil::deserialize($this->protectedOptions, true);
 

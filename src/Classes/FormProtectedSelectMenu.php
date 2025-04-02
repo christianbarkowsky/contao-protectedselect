@@ -5,7 +5,7 @@ declare(strict_types=1);
 /**
  * Plenta Protected Select Bundle for Contao Open Source CMS
  *
- * @copyright     Copyright (c) 2015-2023, Plenta.io
+ * @copyright     Copyright (c) 2015-2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       http://opensource.org/licenses/lgpl-3.0.html
  * @link          https://github.com/plenta/
@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Plenta\ProtectedSelect\Classes;
 
-use Contao\FormSelect;
-use Contao\FormSelectMenu;
 use Contao\Input;
+use Contao\FormSelect;
 use Contao\StringUtil;
+use Contao\FormSelectMenu;
 
 if(class_exists(FormSelect::class)) {
     class SelectParent extends FormSelect {}
@@ -113,6 +113,17 @@ class FormProtectedSelectMenu extends SelectParent
 
         foreach ($this->arrOptions as $k => $option) {
             $this->arrOptions[$k]['value'] = $option['reference'];
+        }
+
+
+        $value = Input::get($this->strName);
+
+        if (null !== $value) {
+            $key = array_search($value, array_column($this->arrOptions, 'value'));
+
+            if ($key !== false && isset($this->arrOptions[$key])) {
+                $this->arrOptions[$key]['default'] = true;
+            }
         }
 
         return parent::getOptions();

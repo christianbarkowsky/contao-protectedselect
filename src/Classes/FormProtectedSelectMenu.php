@@ -132,9 +132,20 @@ class FormProtectedSelectMenu extends SelectParent
     protected function isValidOption($varInput): bool
     {
         $protectedOptions = StringUtil::deserialize($this->protectedOptions, true);
+        $references = array_column($protectedOptions, 'reference');
 
-        foreach ($protectedOptions as $k => $option) {
-            if ($varInput == $option['reference']) {
+        if (\is_array($varInput)) {
+            foreach ($varInput as $value) {
+                if (!\in_array($value, $references)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        foreach ($references as $reference) {
+            if ($varInput == $reference) {
                 return true;
             }
         }

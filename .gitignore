@@ -6,3 +6,6 @@ composer.lock
 var
 vendor
 .idea
+phpunit.phar
+.phpunit.result.cache
+.phpunit.cache

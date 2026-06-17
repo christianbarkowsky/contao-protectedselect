@@ -22,7 +22,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.12",
-        "contao/manager-bundle": "~4.13"
+        "contao/manager-bundle": "~4.13",
+        "phpunit/phpunit": "^9.6"
     },
     "extra": {
         "contao-manager-plugin": "Plenta\\ProtectedSelect\\ContaoManager\\Plugin"
@@ -31,6 +32,14 @@
         "psr-4": {
             "Plenta\\ProtectedSelect\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Plenta\\ProtectedSelect\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit"
     },
     "config": {
         "allow-plugins": {
